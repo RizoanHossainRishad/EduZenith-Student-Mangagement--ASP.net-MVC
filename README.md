@@ -2,7 +2,7 @@
 ***By Rizoan Hossain and Nafia tabassum Shouty***
 
 EduZenith is a comprehensive **educational management system** designed to streamline the interaction between **students, teachers, and administrators**. It offers three distinct panels with role-specific features, ensuring a smooth academic and administrative experience. EduZenith was build using ASP.net MVC framework with Software engineering principles and analysis.
-### Read the full documentation here :- https://drive.google.com/file/d/1gB_LPKuKXelcXkja_n7xBFlvuWYBciSU/view?usp=sharing
+
 
 The project encompasses a comprehensive educational management system with three
 distinct panels:
@@ -25,6 +25,8 @@ include:
 The system ensures efficient management of student enrollments, course offerings, and
 academic interactions, enhancing overall educational administration and user experience.
 ---
+### Read the full documentation here :- https://drive.google.com/file/d/1gB_LPKuKXelcXkja_n7xBFlvuWYBciSU/view?usp=sharing
+
 Project demo video from Shouty's Channel : https://www.youtube.com/watch?v=5Rz3NHnbkNg&list=PL8vqxEFyqfFC_loGB4JXLzKfuaqP374Xp&index=5
 ## 🚀 Features
 
