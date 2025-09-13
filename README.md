@@ -120,6 +120,81 @@ academic interactions, enhancing overall educational administration and user exp
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Main Dashboard
+![Main Dashboard](images/dashboard.jpg)
+
+---
+
+### 👨‍🎓 Student Panel
+![Student Dashboard](images/StudentPanel/student_dashboard.jpg)  
+-
+![Student Details](images/StudentPanel/student_details.jpg)  
+-
+![Student Login](images/StudentPanel/student_login.jpg)  
+-
+![Student Registration](images/StudentPanel/student_registration.jpg)  
+-
+![Student Enrollment](images/StudentPanel/student_enrollment.jpg)  
+-
+![Student Enrolled Courses](images/StudentPanel/student_enrolledcourses.jpg) 
+-
+![Student Course Screen](images/StudentPanel/student_course_screen.jpg) 
+- 
+![Student Posting & Commenting](images/StudentPanel/student_posting_commenting.jpg)  
+-
+
+---
+
+### 👩‍🏫 Teacher Panel
+![Teacher Dashboard](images/teacherpanel/Teacher_dashboard.jpg)
+-
+![Teacher Details Screen](images/teacherpanel/teacher_details_screen.jpg)  
+-
+![Teacher Course Interface](images/teacherpanel/teacher_course_interface.jpg)  
+-
+![Course Taking Available](images/teacherpanel/course_taking_available.jpg)  
+-
+![Enrolled Courses](images/teacherpanel/enrolled_courses.jpg)  
+-
+![Course All Students Grading](images/teacherpanel/course_all_students_grading.jpg)  
+
+---
+
+### 🛠 Admin Panel
+![Admin Dashboard](images/Adminpanel/admin_dashboard.jpg)  
+-
+![All Courses - Admin Panel](images/Adminpanel/all_courses_admin_panel.jpg)  
+-
+![All Students - Admin Panel](images/Adminpanel/all_students_adminpanel.jpg)  
+-
+![All Teachers](images/Adminpanel/all_teachers.jpg)  
+-
+![Course Enrollments Control](images/Adminpanel/course_enrollments_adminpanelcontrol.jpg)  
+-
+![Add Courses](images/Adminpanel/add_courses_admin.jpg)  
+-
+![Delete Student](images/Adminpanel/delete_student.jpg)  
+-
+![Delete Teacher](images/Adminpanel/delete_teacher.jpg)  
+-
+![Pending Student Registrations](images/Adminpanel/student_pending_reg.jpg)  
+-
+![Pending Teacher Registrations](images/Adminpanel/pending_reg_teachers.jpg)  
+-
+![Student Registration Approval](images/Adminpanel/student_reg_admin.jpg)  
+-
+![Teacher Registration Approval](images/Adminpanel/teacher_registration_admin_panel.jpg)  
+
+
+---
+
+### 📝 Quiz Panel
+![Quiz Question Creation](images/Quiz/Quiz1.jpg)  
+![Quiz Participation](images/Quiz/quiz2.jpg)  
+![Quiz Results](images/Quiz/quiz3.jpg)  
+
 
 
 EduZenith is built with **scalability, security, and usability** at its core. It modernizes educational management by integrating **learning, teaching, and administration** in one unified platform. With planned enhancements (AI, mobile app, gamification), EduZenith aims to become a **next-generation educational hub**.  
