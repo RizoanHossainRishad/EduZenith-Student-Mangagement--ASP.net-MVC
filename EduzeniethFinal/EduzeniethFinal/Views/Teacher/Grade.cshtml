@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Grade";
+    Layout = "~/Views/Shared/Teacher.cshtml";
+}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        color: white;
+        box-sizing: border-box;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .Background-clip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .course-item {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .course-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .course-item:hover .portfolio-overlay {
+        opacity: 1;
+    }
+
+    .card-custom {
+        background-color: #090639;
+        color: white;
+    }
+
+        .card-custom .card-header,
+        .card-custom .card-body {
+            background-color: #090639;
+            color: white;
+        }
+</style>
+@*<div class="container">
+        <video autoplay loop muted playsinline class="Background-clip">
+            <source src="~/Image/bgreg3.mp4" type="video/mp4" />
+        </video>
+        <h2>Select a Course</h2>
+        @using (Html.BeginForm("Grade", "Teacher", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.Label("Courses", "Select Course")
+                @Html.DropDownList("selectedCourseId", ViewBag.Courses as SelectList, "Select a course", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        }
+
+        @if (ViewBag.Students != null)
+        {
+            <h3>Enrolled Students</h3>
+            <div class="row">
+                @foreach (var student in ViewBag.Students)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title">@student.FirstName</h5>
+                                <p class="card-text">ID: @student.StudentID</p>
+                                <p class="card-text">Email: @student.Email</p>
+
+                                @using (Html.BeginForm("SubmitGrade", "Teacher", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        @Html.Label("Grade")
+                                        @Html.TextBox("Grade1", null, new { @class = "form-control" })
+                                        @Html.Hidden("StudentID", (int)student.StudentID)
+                                        @Html.Hidden("StudentName", (string)student.FirstName)
+                                        @Html.Hidden("Course_Id", (int)ViewBag.SelectedCourseId)
+                                        @Html.Hidden("Course_Name", (string)ViewBag.SelectedCourseName)
+                                        <input type="submit" value="Submit Grade" class="btn btn-success" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+*@
+<style>
+    .dropdown-black-text {
+        color: black;
+    }
+
+        .dropdown-black-text option {
+            color: black;
+        }
+</style>
+<div class="container">
+    <video autoplay loop muted playsinline class="Background-clip">
+        <source src="~/Image/bgreg3.mp4" type="video/mp4" />
+    </video>
+    <h2>Select a Course</h2>
+    @using (Html.BeginForm("Grade", "Teacher", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.DropDownList("selectedCourseId", ViewBag.Courses as SelectList, "Select a course", new { @class = "form-control dropdown-black-text" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    }
+
+    @if (ViewBag.Students != null)
+    {
+        <h3>Enrolled Students</h3>
+        using (Html.BeginForm("SubmitGrades", "Teacher", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                @for (int i = 0; i < ViewBag.Students.Count; i++)
+                {
+                    var student = ViewBag.Students[i];
+                    <div class="col-md-4">
+                        <div class="card mb-4 card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title">@student.FirstName</h5>
+                                <p class="card-text">ID: @student.StudentID</p>
+                                <p class="card-text">Email: @student.Email</p>
+
+                                <div class="form-group">
+                                    @Html.Label("Grade")
+                                    @Html.TextBox($"grades[{i}].Grade1", null, new { @class = "form-control" })
+                                    @Html.Hidden($"grades[{i}].StudentID", (int)student.StudentID)
+                                    @Html.Hidden($"grades[{i}].StudentName", (string)student.FirstName)
+                                    @Html.Hidden($"grades[{i}].Course_Id", (int)ViewBag.SelectedCourseId)
+                                    @Html.Hidden($"grades[{i}].Course_Name", (string)ViewBag.SelectedCourseName)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit All Grades" class="btn btn-success" />
+            </div>
+        }
+    }
+</div>
+
+

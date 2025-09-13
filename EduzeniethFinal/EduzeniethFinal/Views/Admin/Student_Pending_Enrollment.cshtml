@@ -1,0 +1,150 @@
+﻿@model List<EduzeniethFinal.Models.Enroll>
+@using EduzeniethFinal.Models
+@using System.Data.Entity
+@{
+    ViewBag.Title = "Pending Enrollments";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #DAE3F3;
+        }
+
+        h2 {
+            color: #0D6EFD;
+        }
+
+        .table-responsive {
+            margin-top: 10%;
+            background: linear-gradient(130deg,rgb(186, 22, 80, 0.10),rgb(17, 29, 131, 0.20));
+            backdrop-filter: blur(4px);
+        }
+
+        .table thead {
+            /* background-color: #0D6EFD;*/
+            background: linear-gradient(10deg,rgb(19, 14, 75),rgba(7, 11, 48,.2));
+            backdrop-filter: blur(4px);
+            color: white;
+            text-align: center;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            color: white;
+            background: linear-gradient(10deg,rgba(38, 156, 234,0.2),rgba(255,255,255,0.1));
+            backdrop-filter: blur(1px);
+            text-align: center;
+        }
+
+        .table tbody tr:nth-child(even) {
+            color: white;
+            background: linear-gradient(130deg,rgba(255,255,255,0.1),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #0D6EFD;
+            border-color: #0D6EFD;
+        }
+
+        .btn-success {
+            color: black;
+            background: linear-gradient(130deg,rgb(10, 255, 0),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-danger {
+            color: white;
+            background: linear-gradient(130deg,rgb(255, 0, 0),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        tr td {
+            color: white;
+        }
+    </style>
+</head>
+
+<div class="modal" id="successModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <p>@TempData["SuccessMessage"].ToString()</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/bootstrap.bundle.min.js")
+
+<div class="table-responsive" style="color:white;padding:20px;border-radius:30px;">
+    <h2 class="mb-4" style="color:white;">Pending Enrollments</h2>
+    <table class="table table-striped">
+        <thead style="color:white;font-size:larger;">
+            <tr>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var enrollment in Model)
+            {
+
+                if (enrollment != null)
+                {
+                    var db = new EduEntities();
+                    var courseName = db.Courses.Find(enrollment.cid);
+
+                    var studentName = db.Students.Find(enrollment.sid);
+
+                    if (studentName != null && courseName != null)
+                    {
+                        <tr>
+                            <td style="color:white;">@studentName.FirstName</td>
+                            <td style="color:white;">@courseName.Course_Name</td>
+                            <td>
+                                <form method="post" action="@Url.Action("Student_Pending_Enrollment_Accept", "Admin")" style="display:inline;">
+                                    <input type="hidden" name="id" value="@enrollment.id" />
+                                    <button type="submit" class="btn btn-success" style="display:inline;">Accept</button>
+                                </form>
+
+                                <form method="post" action="@Url.Action("Student_Pending_Enrollment_Decline", "Admin")" style="display:inline;">
+                                    <input type="hidden" name="id" value="@enrollment.id" />
+                                    <button type="submit" class="btn btn-danger" style="display:inline;">Decline</button>
+                                </form>
+                               
+                            </td>
+                        </tr>
+                    }
+                }
+
+
+            }
+        </tbody>
+    </table>
+</div>

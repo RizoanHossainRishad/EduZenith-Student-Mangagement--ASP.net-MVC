@@ -1,0 +1,172 @@
+﻿@model IEnumerable<EduzeniethFinal.Models.Teacher>
+@{
+    ViewBag.Title = "Teacher Pending Registrations";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #DAE3F3;
+        }
+
+        h2 {
+            color: #0D6EFD;
+        }
+
+        .table thead {
+            /* background-color: #0D6EFD;*/
+            background: linear-gradient(10deg,rgb(19, 14, 75),rgba(7, 11, 48,.2));
+            backdrop-filter: blur(4px);
+            color: white;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            color: white;
+            background: linear-gradient(10deg,rgba(38, 156, 234,0.2),rgba(255,255,255,0.1));
+            backdrop-filter: blur(1px);
+        }
+
+        .table tbody tr:nth-child(even) {
+            color: white;
+            background: linear-gradient(130deg,rgba(255,255,255,0.1),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-primary {
+            background-color: #0D6EFD;
+            border-color: #0D6EFD;
+        }
+
+        .btn-success {
+            color: black;
+            background: linear-gradient(130deg,rgb(10, 255, 0),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-danger {
+            color: white;
+            background: linear-gradient(130deg,rgb(255, 0, 0),rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .card-title {
+            color: #0D6EFD;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5" style="background: linear-gradient(10deg,rgba(255,255,255,0.1),rgba(255,255,255,0.1)); backdrop-filter: blur(20px);border-radius:10px;">
+        <hr />
+        <h2 class="text-center font-weight-bold" style="color:mediumpurple">Teacher Pending Registrations</h2>
+        <br />
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successMessage" class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <div class="modal" id="successModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Success</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <p>@TempData["SuccessMessage"].ToString()</p>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/bootstrap.bundle.min.js")
+
+
+        <div class="table-responsive" style="color:white;">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Nationality</th>
+                        <th>Mobile Number</th>
+                        <th>Father's Name</th>
+                        <th>Religion</th>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Educational Field</th>
+                        <th>NID/Passport No</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var teacher in Model)
+                    {
+                        <tr>
+                            <td>@teacher.first_name</td>
+                            <td>@teacher.last_name</td>
+                            <td>@teacher.Username</td>
+                            <td>@teacher.Email</td>
+                            <td>@teacher.Nationality</td>
+                            <td>@teacher.MobileNumber</td>
+                            <td>@teacher.father_name</td>
+                            <td>@teacher.Religion</td>
+                            <td>@teacher.Address</td>
+                            <td>@teacher.Designation</td>
+                            <td>@teacher.Gender</td>
+                            <td>@teacher.EducationalField</td>
+                            <td>@teacher.NID_PassportNo</td>
+                            <td>
+                                @using (Html.BeginForm("TeacherPendingRegistration_Accept", "Admin", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("id", teacher.Id)
+                                    <button type="submit" class="btn btn-success">Accept</button>
+                                }
+                                @using (Html.BeginForm("TeacherPendingRegistration_Decline", "Admin", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("id", teacher.Id)
+                                    <button type="submit" class="btn btn-danger">Decline</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script>
+
+            </script>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
