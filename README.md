@@ -25,7 +25,7 @@ include:
 The system ensures efficient management of student enrollments, course offerings, and
 academic interactions, enhancing overall educational administration and user experience.
 ---
-
+Project demo video from Shouty's Channel : https://www.youtube.com/watch?v=5Rz3NHnbkNg&list=PL8vqxEFyqfFC_loGB4JXLzKfuaqP374Xp&index=5
 ## 🚀 Features
 
 ### 👨‍🎓 Student Panel
